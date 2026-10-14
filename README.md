@@ -20,20 +20,7 @@ All raw CLI and traffic output is in [`results/`](results/).
 
 ## Topology
 
-```mermaid
-flowchart LR
-  core["core<br/>traffic source<br/>(iperf3 clients)"]
-  subgraph bng["bng: 7750 SR-7 (SR-SIM 26.7.R2)"]
-    c1["card 1<br/>iom5-e / me6-100gb-qsfp28"]
-    c3["card 3<br/>iom5-e / me6-100gb-qsfp28"]
-  end
-  olt["olt<br/>Linux bond 802.3ad + QinQ<br/>(iperf3 servers)"]
-  core -- "1/1/c1/1 dot1q<br/>VLAN per VPRN" --> c1
-  c3 -- "3/1/c1/1 lag-14" --> olt
-  c3 -- "3/1/c2/1 lag-14" --> olt
-  c1 -. "1/1/c2/1 (scenario B)" .-> olt
-  c3 -. "3/1/c3/1, 3/1/c4/1 (scenario F)" .-> olt
-```
+![Lab topology](docs/topology.svg)
 
 Opening `sros-lag-mss-qos.clab.yml` in VS Code with the
 [Containerlab extension](https://marketplace.visualstudio.com/items?itemName=srl-labs.vscode-containerlab)
