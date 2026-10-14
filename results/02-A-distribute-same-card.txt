@@ -1,0 +1,40 @@
+
+######## MSS tree: one slot, ROOT and every queue instance
+slot(3)
+--(S) : ROOT  
+OperPIR:4650 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:4650 kbps 
+--(Q) : 1002->lag-14:100.18(3/1/c2/1)->1   
+MBS:12582912 B
+--(Q) : 1002->lag-14:100.18(3/1/c1/1)->1   
+MBS:12582912 B
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:4650 kbps 
+--(Q) : 1001->lag-14:100.17(3/1/c2/1)->1   
+MBS:12582912 B
+--(Q) : 1001->lag-14:100.17(3/1/c1/1)->1   
+MBS:12582912 B
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:4650 kbps 
+--(Q) : 1003->lag-14:100.15(3/1/c2/1)->1   
+MBS:12582912 B
+--(Q) : 1003->lag-14:100.15(3/1/c1/1)->1   
+MBS:12582912 B
+
+######## 3 MSS SAPs x 2 flows x 1.4M: per-flow spray over both members
+== received per target (offered: 2 x 1.4M) ==
+10.10.17.2:5201      2800 Kbits/sec     loss (0%)
+10.10.18.2:5201      2798 Kbits/sec     loss (0.091%)
+10.10.15.2:5201      2800 Kbits/sec     loss (0%)
+== per LAG member (olt rx) ==
+eth1      2910 kbit/s   33.3%
+eth2      5816 kbit/s   66.7%
+total    8726 kbit/s
+
+######## single 8 Mbps flow into SAP 100.17: one member only
+== received per target (offered: 1 x 8M) ==
+10.10.17.2:5201      7999 Kbits/sec     loss (0%)
+== per LAG member (olt rx) ==
+eth2      8307 kbit/s  100.0%
+total    8309 kbit/s

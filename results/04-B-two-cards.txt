@@ -1,0 +1,77 @@
+
+######## B1: + 1/1/c2/1 (2 members on card 3, 1 on card 1)
+14     1/1/c2/1        up    active   up    pe      1             -      32768
+       3/1/c1/1        up    active   up    e       1             -      32768
+       3/1/c2/1        up    active   up    e       1             -      32768
+slot(1)
+--(S) : ROOT  
+OperPIR:1550 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:1550 kbps 
+--(Q) : 1002->lag-14:100.18(1/1/c2/1)->1   
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:1550 kbps 
+--(Q) : 1001->lag-14:100.17(1/1/c2/1)->1   
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:1550 kbps 
+--(Q) : 1003->lag-14:100.15(1/1/c2/1)->1   
+slot(3)
+--(S) : ROOT  
+OperPIR:3100 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:3100 kbps 
+--(Q) : 1002->lag-14:100.18(3/1/c2/1)->1   
+--(Q) : 1002->lag-14:100.18(3/1/c1/1)->1   
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:3100 kbps 
+--(Q) : 1001->lag-14:100.17(3/1/c2/1)->1   
+--(Q) : 1001->lag-14:100.17(3/1/c1/1)->1   
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:3100 kbps 
+--(Q) : 1003->lag-14:100.15(3/1/c2/1)->1   
+--(Q) : 1003->lag-14:100.15(3/1/c1/1)->1   
+== received per target (offered: 8 x 350K) ==
+10.10.17.2:5201      2800 Kbits/sec     loss (0%)
+10.10.18.2:5201      2800 Kbits/sec     loss (0%)
+10.10.15.2:5201      1938 Kbits/sec     loss (31%)
+== per LAG member (olt rx) ==
+eth1      1960 kbit/s   25.0%
+eth2      2826 kbit/s   36.1%
+eth3      3050 kbit/s   38.9%
+total    7837 kbit/s
+
+######## B2: - 3/1/c2/1 (1 member on card 3, 1 on card 1)
+14     1/1/c2/1        up    active   up    pe      1             -      32768
+       3/1/c1/1        up    active   up    e       1             -      32768
+slot(1)
+--(S) : ROOT  
+OperPIR:2325 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:2325 kbps 
+--(Q) : 1002->lag-14:100.18(1/1/c2/1)->1   
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:2325 kbps 
+--(Q) : 1001->lag-14:100.17(1/1/c2/1)->1   
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:2325 kbps 
+--(Q) : 1003->lag-14:100.15(1/1/c2/1)->1   
+slot(3)
+--(S) : ROOT  
+OperPIR:2325 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:2325 kbps 
+--(Q) : 1002->lag-14:100.18(3/1/c1/1)->1   
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:2325 kbps 
+--(Q) : 1001->lag-14:100.17(3/1/c1/1)->1   
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:2325 kbps 
+--(Q) : 1003->lag-14:100.15(3/1/c1/1)->1   
+== received per target (offered: 8 x 350K) ==
+10.10.17.2:5201      2800 Kbits/sec     loss (0%)
+10.10.18.2:5201      2800 Kbits/sec     loss (0.023%)
+10.10.15.2:5201      FAILED: iperf3: error - unable to read from stream socket: Resource temporarily unavailable
+== per LAG member (olt rx) ==
+eth1      3274 kbit/s   56.2%
+eth3      2548 kbit/s   43.8%
+total    5823 kbit/s

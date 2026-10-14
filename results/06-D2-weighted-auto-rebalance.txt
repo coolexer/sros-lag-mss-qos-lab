@@ -1,0 +1,22 @@
+
+######## per-link-hash weighted auto-rebalance true
+SvcId      SAP                              Active Link         Oper   Oper
+1001       lag-14:100.17                    3/1/c1/1            1      1
+1002       lag-14:100.18                    3/1/c2/1            1      1
+1003       lag-14:100.15                    3/1/c1/1            1      1
+1004       lag-14:100.11                    3/1/c1/1            1      1
+1004       lag-14:100.13                    3/1/c2/1            1      1
+1004       lag-14:100.16                    3/1/c2/1            1      1
+1005       lag-14:200.*                     3/1/c1/1            1      1
+== received per target (offered: 4 x 300K) ==
+10.10.17.2:5201      1195 Kbits/sec     loss (0.4%)
+10.10.18.2:5201      1192 Kbits/sec     loss (0.67%)
+10.10.15.2:5201      1195 Kbits/sec     loss (0.4%)
+10.10.11.2:5201      1190 Kbits/sec     loss (0.8%)
+10.10.13.2:5201      1183 Kbits/sec     loss (1.3%)
+10.10.16.2:5201      1187 Kbits/sec     loss (1%)
+10.10.200.1:5201     1193 Kbits/sec     loss (0.53%)
+== per LAG member (olt rx) ==
+eth1      4960 kbit/s   57.2%
+eth2      3707 kbit/s   42.8%
+total    8668 kbit/s

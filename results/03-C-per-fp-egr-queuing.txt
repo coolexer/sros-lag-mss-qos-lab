@@ -1,0 +1,11 @@
+
+######## try per-fp-egr-queuing on the distribute LAG with VPRN SAPs
+INFO: CLI #2061: Uncommitted changes are discarded on configuration mode exit
+A:admin@bng-a# commit
+MINOR: MGMT_CORE #4001: configure service vprn "1005" interface "int_lag-14:200" sap lag-14:200.* - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing
+MINOR: MGMT_CORE #4001: configure service vprn "1004" interface "int_lag-14:100.16" sap lag-14:100.16 - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing
+MINOR: MGMT_CORE #4001: configure service vprn "1004" interface "int_lag-14:100.13" sap lag-14:100.13 - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing
+MINOR: MGMT_CORE #4001: configure service vprn "1004" interface "int_lag-14:100.11" sap lag-14:100.11 - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing
+MINOR: MGMT_CORE #4001: configure service vprn "1003" interface "int_lag-14:100.15" sap lag-14:100.15 - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing
+MINOR: MGMT_CORE #4001: configure service vprn "1002" interface "int_lag-14:100.18" sap lag-14:100.18 - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing
+MINOR: MGMT_CORE #4001: configure service vprn "1001" interface "int_lag-14:100.17" sap lag-14:100.17 - sap on a lag with per-fp-egr-queuing and per-link-hash disabled. not supported - configure lag "lag-14" access per-fp-ing-queuing

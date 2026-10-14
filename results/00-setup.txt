@@ -1,0 +1,19 @@
+
+######## apply base config (lag-14 = 3/1/c1/1 + 3/1/c2/1, adapt-qos distribute)
+1         iom5-e:he1200g+                          up    up            
+3         iom5-e:he1200g+                          up    up            
+A         cpm5                                     up    up/active     
+B         cpm5                                     up    down/standby  
+1     1     me6-100gb-qsfp28                            up        up
+3     1     me6-100gb-qsfp28                            up        up
+14     3/1/c1/1        up    active   up    pe      1             -      32768
+       3/1/c2/1        up    active   up    e       1             -      32768
+
+######## reachability core -> every SAP
+10.10.17.2     0% packet loss
+10.10.18.2     0% packet loss
+10.10.15.2     0% packet loss
+10.10.11.2     0% packet loss
+10.10.13.2     0% packet loss
+10.10.16.2     0% packet loss
+10.10.200.1    0% packet loss

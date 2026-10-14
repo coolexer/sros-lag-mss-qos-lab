@@ -1,0 +1,40 @@
+
+######## F: + 3/1/c3/1 + 3/1/c4/1 (4 members on card 3)
+14     3/1/c1/1        up    active   up    pe      1             -      32768
+       3/1/c2/1        up    active   up    e       1             -      32768
+       3/1/c3/1        up    active   up    e       1             -      32768
+       3/1/c4/1        up    active   up    e       1             -      32768
+SvcId      SAP                              Active Link         Oper   Oper
+1001       lag-14:100.17                    3/1/c3/1            1      1
+1002       lag-14:100.18                    3/1/c2/1            1      1
+1003       lag-14:100.15                    3/1/c1/1            1      1
+1004       lag-14:100.11                    3/1/c3/1            1      1
+1004       lag-14:100.13                    3/1/c4/1            1      1
+1004       lag-14:100.16                    3/1/c1/1            1      1
+1005       lag-14:200.*                     3/1/c2/1            1      1
+slot(3)
+--(S) : ROOT  
+OperPIR:4650 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:4650 kbps 
+--(Q) : 1002->lag-14:100.18(3/1/c2/1)->1   
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:4650 kbps 
+--(Q) : 1003->lag-14:100.15(3/1/c1/1)->1   
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:4650 kbps 
+--(Q) : 1001->lag-14:100.17(3/1/c3/1)->1   
+== received per target (offered: 4 x 300K) ==
+10.10.17.2:5201      1110 Kbits/sec     loss (7.5%)
+10.10.18.2:5201      1197 Kbits/sec     loss (0.2%)
+10.10.15.2:5201      1197 Kbits/sec     loss (0.27%)
+10.10.11.2:5201      1200 Kbits/sec     loss (0%)
+10.10.13.2:5201      1197 Kbits/sec     loss (0.27%)
+10.10.16.2:5201      1195 Kbits/sec     loss (0.4%)
+10.10.200.1:5201     1192 Kbits/sec     loss (0.67%)
+== per LAG member (olt rx) ==
+eth1      2488 kbit/s   28.9%
+eth2      2481 kbit/s   28.8%
+eth4      2403 kbit/s   27.9%
+eth5      1245 kbit/s   14.5%
+total    8618 kbit/s

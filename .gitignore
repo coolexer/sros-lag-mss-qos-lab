@@ -1,0 +1,7 @@
+# SR-SIM license is personal, never commit it
+license*.txt
+*.license
+# containerlab runtime
+clab-*/
+.clab*
+*.bak

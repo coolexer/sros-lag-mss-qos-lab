@@ -1,0 +1,74 @@
+
+######## rebuild lag-14: distribute include-egr-hash-cfg + per-link-hash + per-fp-egr-queuing
+14     3/1/c1/1        up    active   up    pe      1             -      32768
+       3/1/c2/1        up    active   up    e       1             -      32768
+    admin-state enable
+    description "OLT-1"
+    encap-type qinq
+    mode access
+    lacp {
+        mode active
+        administrative-key 100
+    }
+    access {
+        per-fp-egr-queuing true
+        adapt-qos {
+            mode distribute
+            include-egr-hash-cfg true
+        }
+    }
+    per-link-hash {
+    }
+    port 3/1/c1/1 {
+    }
+    port 3/1/c2/1 {
+    }
+
+######## SAP -> link (plain per-link-hash)
+SvcId       SAP                              Active Link         
+1001        lag-14:100.17                    3/1/c2/1            
+1002        lag-14:100.18                    3/1/c2/1            
+1003        lag-14:100.15                    3/1/c2/1            
+1004        lag-14:100.11                    3/1/c2/1            
+1004        lag-14:100.13                    3/1/c1/1            
+1004        lag-14:100.16                    3/1/c2/1            
+1005        lag-14:200.*                     3/1/c2/1            
+
+######## SAP 100.11 scheduler: one queue instance
+| slot(3)
+|--(S) : ROOT  
+|   |    OperPIR:5000 kbps 
+|   |--(S) : Tier0Egress:1004->lag-14:100.11->1  
+|   |   |    OperPIR:5000 kbps 
+|   |   |--(Q) : 1004->lag-14:100.11(3/1/c2/1)->1   
+
+######## MSS tree
+slot(3)
+--(S) : ROOT  
+OperPIR:4650 kbps 
+--(S) : Tier0Egress:1002->lag-14:100.18->1  
+OperPIR:4650 kbps 
+--(Q) : 1002->lag-14:100.18(3/1/c2/1)->1   
+MBS:12582912 B
+--(S) : Tier0Egress:1003->lag-14:100.15->1  
+OperPIR:4650 kbps 
+--(Q) : 1003->lag-14:100.15(3/1/c2/1)->1   
+MBS:12582912 B
+--(S) : Tier0Egress:1001->lag-14:100.17->1  
+OperPIR:4650 kbps 
+--(Q) : 1001->lag-14:100.17(3/1/c2/1)->1   
+MBS:12582912 B
+
+######## traffic: all 7 SAPs x 4 flows
+== received per target (offered: 4 x 300K) ==
+10.10.17.2:5201      1200 Kbits/sec     loss (0%)
+10.10.18.2:5201      1200 Kbits/sec     loss (0%)
+10.10.15.2:5201      1200 Kbits/sec     loss (0%)
+10.10.11.2:5201      1200 Kbits/sec     loss (0%)
+10.10.13.2:5201      1197 Kbits/sec     loss (0.27%)
+10.10.16.2:5201      1200 Kbits/sec     loss (0%)
+10.10.200.1:5201     1200 Kbits/sec     loss (0%)
+== per LAG member (olt rx) ==
+eth1      1245 kbit/s   14.3%
+eth2      7482 kbit/s   85.7%
+total    8727 kbit/s

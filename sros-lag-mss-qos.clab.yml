@@ -1,0 +1,69 @@
+name: sros-lag-mss-qos
+
+mgmt:
+  network: sros-lag-mss-qos-mgmt
+  ipv4-subnet: 172.31.249.0/24
+
+topology:
+  nodes:
+    bng:
+      kind: nokia_srsim
+      type: sr-7
+      image: registry.srlinux.dev/pub/nokia_srsim:26.7.R2
+      license: license26.txt # not in the repo, bring your own SR-SIM 26.x license
+      mgmt-ipv4: 172.31.249.10
+      components:
+        - slot: A
+          env:
+            NOKIA_SROS_SFM: m-sfm6-7/12
+        - slot: 1
+          type: iom5-e
+          env:
+            NOKIA_SROS_SFM: m-sfm6-7/12
+          mda:
+            - slot: 1
+              type: me6-100gb-qsfp28
+        - slot: 3
+          type: iom5-e
+          env:
+            NOKIA_SROS_SFM: m-sfm6-7/12
+          mda:
+            - slot: 1
+              type: me6-100gb-qsfp28
+      labels:
+        graph-icon: pe
+
+    core:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+      mgmt-ipv4: 172.31.249.21
+      binds:
+        - ./configs/core-init.sh:/opt/lab/init.sh:ro
+      exec:
+        - bash /opt/lab/init.sh
+      labels:
+        graph-icon: server
+
+    olt:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool:latest
+      mgmt-ipv4: 172.31.249.22
+      binds:
+        - ./configs/olt-init.sh:/opt/lab/init.sh:ro
+        - ./configs/olt-bond.sh:/opt/lab/olt-bond.sh:ro
+      exec:
+        - bash /opt/lab/init.sh
+      labels:
+        graph-icon: pon
+
+  links:
+    # upstream: one dot1q port, one VLAN per VPRN
+    - endpoints: ["core:eth1", "bng:1/1/c1/1"]
+    # lag-14 members on card 3 (same FP)
+    - endpoints: ["bng:3/1/c1/1", "olt:eth1"]
+    - endpoints: ["bng:3/1/c2/1", "olt:eth2"]
+    # card 1 member, scenario B (LAG spread over two cards)
+    - endpoints: ["bng:1/1/c2/1", "olt:eth3"]
+    # extra card 3 members, scenario F (4 members)
+    - endpoints: ["bng:3/1/c3/1", "olt:eth4"]
+    - endpoints: ["bng:3/1/c4/1", "olt:eth5"]

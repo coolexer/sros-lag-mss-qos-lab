@@ -1,0 +1,29 @@
+
+######## SAP 100.11 egress scheduler 5000 kbps
+Egress Scheduler Policy : SAP_100M_OUT
+| slot(3)
+|--(S) : ROOT  
+|   |--(S) : Tier0Egress:1004->lag-14:100.11->1  
+|   |   |--(Q) : 1004->lag-14:100.11(3/1/c2/1)->1   
+|   |   |--(Q) : 1004->lag-14:100.11(3/1/c1/1)->1   
+
+######## offer 8 Mbps (4 x 2M) into the 5 Mbps SAP scheduler
+== received per target (offered: 4 x 2M) ==
+10.10.11.2:5201      7983 Kbits/sec     loss (0.19%)
+== per LAG member (olt rx) ==
+eth1      2075 kbit/s   25.0%
+eth2      6218 kbit/s   75.0%
+total    8293 kbit/s
+Egress Queue 1
+For. In/InplusProf    : 4                       288                      
+For. Out/ExcProf      : 12498                   15647587                 
+Dro. In/InplusProf    : 0                       0                        
+Dro. Out/ExcProf      : 0                       0                        
+
+######## offer 30 Mbps (6 x 5M) into SAP 200.* (queue 8000 kbps): datapath ceiling 1000 pps/port
+== received per target (offered: 6 x 5M) ==
+10.10.200.1:5201     9473 Kbits/sec     loss (68%)
+== per LAG member (olt rx) ==
+eth1      2991 kbit/s   30.1%
+eth2      6958 kbit/s   69.9%
+total    9949 kbit/s

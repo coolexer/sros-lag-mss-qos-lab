@@ -1,0 +1,126 @@
+{
+  "freeTextAnnotations": [
+    {
+      "id": "title",
+      "text": "SR OS access LAG + Multi-Service Site QoS lab (SR-SIM 26.7.R2, rates scaled 1:20)",
+      "position": { "x": 60, "y": 20 },
+      "fontSize": 18,
+      "fontWeight": "bold",
+      "fontColor": "#001135",
+      "backgroundColor": "transparent",
+      "textAlign": "left"
+    },
+    {
+      "id": "lag-note",
+      "text": "lag-14  mode access  encap qinq  LACP active\nA/C/D/E: 3/1/c1/1 + 3/1/c2/1  (card 3, same FP)\nB:   + 1/1/c2/1  (card 1)\nF:   + 3/1/c3/1 + 3/1/c4/1  (4 members)",
+      "position": { "x": 470, "y": 420 },
+      "fontSize": 12,
+      "fontFamily": "monospace",
+      "fontColor": "#001135",
+      "backgroundColor": "#F3F6FA",
+      "textAlign": "left"
+    },
+    {
+      "id": "mss-note",
+      "text": "MSS_93M_SITE-A  ROOT pir/cir 4.65 Mbps (= 93 Mbps / 20)\nSAPs 100.17 / 100.18 / 100.15  (sap-egress mss-out)\nSAPs 100.11 / 100.13 / 100.16: SAP_100M_OUT (5 Mbps)\nSAP 200.*: sap-egress default-out (8 Mbps)",
+      "position": { "x": 160, "y": 420 },
+      "fontSize": 12,
+      "fontFamily": "monospace",
+      "fontColor": "#001135",
+      "backgroundColor": "#EAF2FF",
+      "textAlign": "left"
+    },
+    {
+      "id": "core-note",
+      "text": "1/1/c1/1 dot1q\nVLAN 17/18/15/22/200\n= one per VPRN\niperf3 client",
+      "position": { "x": 30, "y": 330 },
+      "fontSize": 11,
+      "fontColor": "#475569",
+      "backgroundColor": "transparent",
+      "textAlign": "left"
+    },
+    {
+      "id": "olt-note",
+      "text": "bond0 802.3ad (layer3+4)\nQinQ 100.x + 200\niperf3 -s per SAP address",
+      "position": { "x": 830, "y": 330 },
+      "fontSize": 11,
+      "fontColor": "#475569",
+      "backgroundColor": "transparent",
+      "textAlign": "left"
+    }
+  ],
+  "freeShapeAnnotations": [],
+  "trafficRateAnnotations": [],
+  "groupStyleAnnotations": [
+    {
+      "id": "upstream",
+      "name": "Upstream / core",
+      "level": "1",
+      "position": { "x": 20, "y": 120 },
+      "width": 200,
+      "height": 290,
+      "labelColor": "#475569",
+      "backgroundColor": "#F8FAFC",
+      "borderColor": "#94A3B8"
+    },
+    {
+      "id": "bng-grp",
+      "name": "BNG  7750 SR-7  (iom5-e slot 1 + slot 3)",
+      "level": "1",
+      "position": { "x": 300, "y": 120 },
+      "width": 360,
+      "height": 290,
+      "labelColor": "#005AFF",
+      "backgroundColor": "#EAF2FF",
+      "borderColor": "#005AFF"
+    },
+    {
+      "id": "access",
+      "name": "OLT (access)",
+      "level": "1",
+      "position": { "x": 740, "y": 120 },
+      "width": 260,
+      "height": 290,
+      "labelColor": "#00A36C",
+      "backgroundColor": "#ECFDF5",
+      "borderColor": "#00A36C"
+    }
+  ],
+  "networkNodeAnnotations": [],
+  "nodeAnnotations": [
+    {
+      "id": "core",
+      "position": { "x": 120, "y": 260 },
+      "label": "core\nLinux iperf3",
+      "icon": "server",
+      "iconColor": "#64748B",
+      "groupId": "upstream",
+      "labelPosition": "bottom"
+    },
+    {
+      "id": "bng",
+      "position": { "x": 480, "y": 260 },
+      "label": "bng\nNokia 7750 SR-7\nSR-SIM 26.7.R2",
+      "icon": "pe",
+      "iconColor": "#005AFF",
+      "groupId": "bng-grp",
+      "labelPosition": "bottom",
+      "interfacePattern": "3/1/c{n}/1"
+    },
+    {
+      "id": "olt",
+      "position": { "x": 870, "y": 260 },
+      "label": "olt\nLinux LACP bond",
+      "icon": "pon",
+      "iconColor": "#00A36C",
+      "groupId": "access",
+      "labelPosition": "bottom",
+      "interfacePattern": "eth{n}"
+    }
+  ],
+  "edgeAnnotations": [],
+  "aliasEndpointAnnotations": [],
+  "viewerSettings": {
+    "linkLabelMode": "show-all"
+  }
+}
